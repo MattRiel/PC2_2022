@@ -34,7 +34,7 @@
   </body>
   <style>
     body {
-      background: rgba(255, 255, 255, l);
+      background: rgba(255, 255, 255, 1);
     }
   </style>
   <script src="/pc.js"></script>
@@ -48,6 +48,7 @@
     obj2.blank2canvas(200, 200);
 
     var tes = new Array();
+
     document.getElementById('read').addEventListener('click', function () {
       tes = obj.image2read();
     });
@@ -68,7 +69,7 @@
       }
       //end of copy
       for (var j = 0; j < tesbackup.length; j++) {
-        tesbackup[j][0] += parselnt(document.getElementById('ch1').value);
+        tesbackup[j][0] += parseInt(document.getElementById('ch1').value);
         tesbackup[j][1] += parselnt(document.getElementById('ch2').value);
         tesbackup[j][2] += parselnt(document.getElementById('ch3').value);
         tesbackup[j][3] = parselnt(document.getElementById('ch4').value);
