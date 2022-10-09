@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Modul 1 Contoh 1</title>
+  </head>
+  <body>
+    <canvas id="canvas1"></canvas>
+    <canvas id="canvas2"></canvas>
+    <hr />
+    <button id="read">READ IMAGE</button>
+    <hr />
+    <button id="ori">ORIGINAL IMAGE</button>
+    <hr />
+    <select id="histval">
+      <option value="0">Red</option>
+      <option value="1">Green</option>
+      <option value="2">Blue</option>
+    </select>
+    <button id="histl">Histogram</button>
+    <hr />
+    R <input type="range" min="-255" max="255" data-id="1" id="ch1 " /><input
+      type="text"
+      id="chv1"
+      size="3"
+      disabled
+      value="0"
+    /><br />
+    G <input type="range" min="-255" max="255" data-id="2" id="ch2" /><input
+      type="text"
+      id="chv2"
+      size="3"
+      disabled
+      value="0"
+    /><br />
+    B <input type="range" min="-255" max="255" data-id="3" id="ch3" /><input
+      type="text"
+      id="chv3"
+      size="3"
+      disabled
+      value="0"
+    /><br />
+    A
+    <input
+      type="range"
+      min="O"
+      max="255"
+      data-id="4"
+      id="ch4"
+      value="255"
+    /><input type="text" id="chv4" size="3" disabled value="255" /><br />
+    <button id="default">Default RGBA</button>
+  </body>
+  <style>
+    body {
+      background: rgba(255, 255, 255, l);
+    }
+  </style>
+  <script src="/pc.js"></script>
+  <script>
+    var canvas = document.getElementByld('canvas1');
+    var obj = new pc(canvas);
+    obj.image2canvas('iklc.png');
+
+    var canvas2 = document.getElementById('canvas2');
+    var obj = new pc(canvas2);
+    obj2.blank2canvas(200, 200);
+
+    var tes = new Array();
+    document.getElementById('read').addEventListener('click', function () {
+      tes = obj.image2read();
+    });
+
+    document.getElementById('ori').addEventListener('click', function () {
+      obj.image2original();
+    });
+
+    function rgbachange() {
+      //copy array to array without reference tesbackup = new Array()
+      for (var c = 0; c < tes.length; c++) {
+        temp = new Array();
+        for (var d = 0; d < 4; d++) {
+          temp.push(tes[c][d]);
+        }
+        tesbackup.push(temp);
+      }
+      //end of copy
+      for (var j = 0; j < tesbackup.length; j++) {
+        tesbackup[j][0] += parselnt(document.getElementByld('ch1').value);
+        tesbackup[j][1] += parselnt(document.getElementByld('ch2').value);
+        tesbackup[j][2] += parselnt(document.getElementByld('ch3').value);
+        tesbackup[j][3] = parselnt(document.getElementByld('ch4').value);
+      }
+      for (var i = 1; i <= 4; i++)
+        document.getElementByld('chv' + i).value = document.getElementByld(
+          'ch' + i
+        ).value;
+      obj.array2canvas(tesbackup);
+    }
+    for (var i = 1; i <= 4; i++) {
+      document.getElementByld('ch' + i).addEventListener('input', function () {
+        rgbachange();
+      });
+    }
+    document.getElementByld('default').addEventListener('click', function () {
+      for (var i = 1; i <= 3; i++) {
+        document.getElementByld('ch' + i).value = 0;
+      }
+      document.getElementByld('ch4').value = 255;
+      rgbachange();
+    });
+    document.getElementById('hist1').addEventListener('click', function () {
+      var hist = obj.hist2read([
+        parselnt(document.getElementByld('histval').value),
+      ]);
+      //Call [R,G,B,A] as [0,1,2,3], can input more than 1 but only [0 .. 3] parameter only
+      obj2.hist2canvas(hist[0], 10);
+    });
+  </script>
+</html>
