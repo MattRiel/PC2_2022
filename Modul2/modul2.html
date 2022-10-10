@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="en" class="h-101">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PC2 - Modul1</title>
+    <title>PC2 - Modul2</title>
 
     <!-- BootStrap Link -->
     <link
@@ -33,18 +33,43 @@
           </h1>
         </div>
       </header>
-      <!-- RGB Slider -->
+
+      <!-- Brightness & Threshold -->
+      <div class="mt-4">
+        <!-- Threshold -->
+        Threshold
+        <input type="range" min="0" max="255" id="threshold" value="0" />
+        <input type="text" size="3" disabled value="0" id="threshold_val" />
+        <button id="thdefault">Reset</button> <br />
+        <!-- Threshold -->
+
+        <!-- Brightness -->
+        Brightness
+        <input
+          type="range"
+          min="-255"
+          max="255"
+          data-id="4"
+          id="brightness"
+          value="0"
+        />
+        <input type="text" id="brightness_val" size="3" disabled value="0" />
+        <button id="brdefault">Reset</button>
+        <!-- Brightness -->
+      </div>
+
       <div class="row align-items-start mb-auto">
         <div>
           <div class="col">
+            <!-- RGB Slider -->
             <div
               class="container-fluid text-center border border-4 border-black rounded-3"
             >
               <hr />
               <button id="read">Read Image</button>
               <button id="ori">Original Image</button>
-              <button id="negatif">Negatif Image</button>
-              <button id="grayscl">Grayscale</button>
+              <button id="negatif" type="button">Negatif Image</button>
+              <button id="grayscl" type="button">Grayscale</button>
               <hr />
               <select id="histval">
                 <option value="0">Red</option>
@@ -114,11 +139,12 @@
               <button id="default">Default RGBA</button>
               <hr />
             </div>
+            <!-- RGB Slider -->
           </div>
         </div>
 
         <!-- Gambar -->
-        <div class="mt-4">
+        <div class="mt-3">
           <div class="col">
             <canvas id="canvas1"></canvas>
             <canvas id="canvas2"></canvas>
@@ -126,11 +152,10 @@
         </div>
         <!-- Gambar -->
       </div>
-      <!-- RGB Slider -->
 
       <!-- Info -->
       <main class="px-3">
-        <h2>Representasi Pengolahan Citra Pada Pemrograman Web</h2>
+        <h2>Pemrograman Image 1</h2>
         <hr />
         Nama : Ariel Matius Surbakti <br />
         NIM : 201401038<br />
@@ -148,7 +173,7 @@
   <script src="pc.js"></script>
   <script>
     var canvas1 = document.getElementById('canvas1');
-    var img = 'iklc.jpg';
+    var img = 'sample.png';
     var obj1 = new pc(canvas1);
     obj1.image2canvas(img);
 
@@ -209,6 +234,95 @@
         parseInt(document.getElementById('histval').value),
       ]);
       obj2.hist2canvas(hist[0], 10);
+    });
+
+    // Threshold Changer
+    document.getElementById('threshold').addEventListener('click', function () {
+      document.getElementById('threshold_val').value = this.value;
+      batas = parseInt(this.value);
+      // copy array without reference
+      tesbackup = new Array();
+      for (var c = 0; c < tes.length; c++) {
+        temp = new Array();
+        for (var d = 0; d < 4; d++) {
+          temp.push(tes[c][d]);
+        }
+        tesbackup.push(temp);
+      }
+
+      // end of copy
+      for (var i = 0; i < tes.length; i++) {
+        gabung = Math.floor(
+          (tesbackup[i][0] + tesbackup[i][1] + tesbackup[i][2]) / 3
+        );
+        if (gabung < batas) {
+          gabung = 0;
+        } else gabung = 255;
+        tes[i][0] = gabung;
+        tes[i][1] = gabung;
+        tes[i][2] = gabung;
+        tes[i][3] = tes[i][3];
+      }
+      obj1.array2canvas(tesbackup);
+    });
+
+    // Threshold Default
+    document.getElementById('thdefault').addEventListener('click', function () {
+      document.getElementById('threshold').value = 0;
+      document.getElementById('threshold_val').value = 0;
+      rgbachange();
+    });
+
+    // Brightness
+    document
+      .getElementById('brightness')
+      .addEventListener('click', function () {
+        document.getElementById('brightness_val').value = this.value;
+        p = parseInt(this.value);
+        // copy array without reference
+        tesbackup = new Array();
+        for (var c = 0; c < tes.length; c++) {
+          temp = new Array();
+          for (var d = 0; d < 4; d++) {
+            temp.push(tes[c][d]);
+          }
+          tesbackup.push(temp);
+        }
+
+        // end of copy
+        for (var i = 0; i < tes.length; i++) {
+          tesbackup[i][0] = tes[i][0] + p;
+          tesbackup[i][1] = tes[i][1] + p;
+          tesbackup[i][2] = tes[i][2] + p;
+          tesbackup[i][3] = tes[i][3];
+        }
+        obj1.array2canvas(tesbackup);
+      });
+
+    // Brightness Default
+    document.getElementById('brdefault').addEventListener('click', function () {
+      document.getElementById('brightness').value = 0;
+      document.getElementById('brightness_val').value = 0;
+      rgbachange();
+    });
+
+    // Negatif
+    document.getElementById('negatif').addEventListener('click', function () {
+      tesbackup = new Array();
+      for (var c = 0; c < tes.length; c++) {
+        temp = new Array();
+        for (var d = 0; d < 4; d++) {
+          temp.push(tes[c][d]);
+        }
+        tesbackup.push(temp);
+      }
+      for (var i = 0; i < tesbackup.length; i++) {
+        tes[i][0] = 255 - tesbackup[i][0];
+        tes[i][1] = 255 - tesbackup[i][1];
+        tes[i][2] = 255 - tesbackup[i][2];
+        tes[i][3] = tesbackup[i][3];
+      }
+      obj1.array2canvas(tes);
     });
   </script>
 </html>
