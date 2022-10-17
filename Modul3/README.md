@@ -4,17 +4,17 @@ Pemrograman Image 1
 
 ###### Buatlah web seperti di modul yang memiliki dan ubahlah tampilannya
 
-> Flip Horizontal\_\_
-> ![Gambar] (https://github.com/MattRiel/PC2_2022/blob/Modul3/Modul3/Screenshot/hori.png)
+> Flip Horizontal
+> ![Gambar](https://github.com/MattRiel/PC2_2022/blob/Modul3/Modul3/Screenshot/hori.png)
 
 > Flip Vertical
-> ![Vertical](/Screenshot/verti.png)
+> ![Vertical](https://github.com/MattRiel/PC2_2022/blob/Modul3/Modul3/Screenshot/verti.png)
 
 > Mirror X
-> ![Mirror X](/Screenshot/mirox.png)
+> ![Mirror X](https://github.com/MattRiel/PC2_2022/blob/Modul3/Modul3/Screenshot/mirox.png)
 
 > Mirror Y
-> ![Mirror Y](/Screenshot/miroy.png)
+> ![Mirror Y](https://github.com/MattRiel/PC2_2022/blob/Modul3/Modul3/Screenshot/miroy.png)
 
 > Gabungan
-> ![Gabungan](/Screenshot/gabungan.png)
+> ![Gabungan](https://github.com/MattRiel/PC2_2022/blob/Modul3/Modul3/Screenshot/gabungan.png)
