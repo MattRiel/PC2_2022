@@ -35,12 +35,14 @@
       </header>
 
       <!-- Brightness & Threshold -->
+
       <div class="mt-4">
         <!-- Threshold -->
         Threshold
         <input type="range" min="0" max="255" id="threshold" value="0" />
         <input type="text" size="3" disabled value="0" id="threshold_val" />
-        <button id="thdefault">Reset</button> <br />
+        <button id="thdefault" class="btn btn-danger btn-sm">Reset</button>
+        <br />
         <!-- Threshold -->
 
         <!-- Brightness -->
@@ -54,7 +56,7 @@
           value="0"
         />
         <input type="text" id="brightness_val" size="3" disabled value="0" />
-        <button id="brdefault">Reset</button>
+        <button id="brdefault" class="btn btn-danger btn-sm">Reset</button>
         <!-- Brightness -->
       </div>
 
@@ -153,6 +155,16 @@
         <!-- Gambar -->
       </div>
 
+      <!-- Flipping / Mirroring -->
+      <div class="mt-auto">
+        <button id="flip1">Horizontal</button>
+        <button id="flip2">Vertical</button>
+        <button id="mirror">Mirror</button>
+        <button id="mirror2">Mirror 2</button>
+        <button id="gabung">Gabungan</button>
+      </div>
+      <!-- Flipping / Mirroring -->
+
       <!-- Info -->
       <main class="px-3">
         <h2>Pemrograman Image 2</h2>
@@ -164,12 +176,24 @@
       <!-- Info -->
 
       <footer class="mt-auto text-white-50">
+        <div class="popup" onclick="myFunction()">
+          TOMBOL SUS
+          <span class="popuptext" id="myPopup">SELAMAT ULANG TAHUN BANG</span>
+        </div>
         <p>Praktikum Pengolahan Citra - 2022</p>
       </footer>
     </div>
   </body>
 
   <!-- JavaScript -->
+  <script>
+    // When the user clicks on <div>, open the popup
+    function myFunction() {
+      var popup = document.getElementById('myPopup');
+      popup.classList.toggle('show');
+    }
+  </script>
+
   <script src="pc.js"></script>
   <script>
     var canvas1 = document.getElementById('canvas1');
@@ -305,8 +329,10 @@
       document.getElementById('brightness_val').value = 0;
       rgbachange();
     });
+  </script>
 
-    // Negatif
+  <!-- Negative Script -->
+  <script>
     document.getElementById('negatif').addEventListener('click', function () {
       tesbackup = new Array();
       for (var c = 0; c < tes.length; c++) {
@@ -325,4 +351,147 @@
       obj1.array2canvas(tes);
     });
   </script>
+  <!-- Negative Script -->
+
+  <!-- Horizontal Flip Script -->
+  <script>
+    document.getElementById('flip1').addEventListener('click', function () {
+      // copy array without reference
+      tesbackup = new Array();
+      for (var c = 0; c < tes.length; c++) {
+        temp = new Array();
+        for (var d = 0; d < 4; d++) {
+          temp.push(tes[c][d]);
+        }
+        tesbackup.push(temp);
+      }
+      // end of copy
+      for (var i = 0; i < tesbackup.length; i++) {
+        x = obj1.i2x(i); // mengambil nilai index ke dalam koordinat x
+        y = obj1.i2y(i);
+        posnow = obj1.xy2i(obj1.width - 1 - x, y); // mengubah index array xy ke dalam koordinat
+        tes[i][0] = tesbackup[posnow][0];
+        tes[i][1] = tesbackup[posnow][1];
+        tes[i][2] = tesbackup[posnow][2];
+        tes[i][3] = tesbackup[posnow][3];
+      }
+      obj1.array2canvas(tes);
+    });
+  </script>
+  <!-- Horizontal Flip Script -->
+
+  <!-- Vertical Flip Script -->
+  <script>
+    document.getElementById('flip2').addEventListener('click', function () {
+      // copy array without reference
+      tesbackup = new Array();
+      for (var c = 0; c < tes.length; c++) {
+        temp = new Array();
+        for (var d = 0; d < 4; d++) {
+          temp.push(tes[c][d]);
+        }
+        tesbackup.push(temp);
+      }
+      // end of copy
+      for (var i = 0; i < tesbackup.length; i++) {
+        x = obj1.i2x(i); // mengambil nilai index ke dalam koordinat x
+        y = obj1.i2y(i);
+        posnow = obj1.xy2i(x, obj1.height - 1 - y); // mengubah index array xy ke dalam koordinat
+        tes[i][0] = tesbackup[posnow][0];
+        tes[i][1] = tesbackup[posnow][1];
+        tes[i][2] = tesbackup[posnow][2];
+        tes[i][3] = tesbackup[posnow][3];
+      }
+      obj1.array2canvas(tes);
+    });
+  </script>
+  <!-- Vertical Flip Script -->
+
+  <!-- Mirror Script -->
+  <script>
+    document.getElementById('mirror').addEventListener('click', function () {
+      // copy array without reference
+      tesbackup = new Array();
+      for (var c = 0; c < tes.length; c++) {
+        temp = new Array();
+        for (var d = 0; d < 4; d++) {
+          temp.push(tes[c][d]);
+        }
+        tesbackup.push(temp);
+      }
+      // end of copy
+      var wnow = obj1.width;
+      for (var i = 0; i < tesbackup.length; i++) {
+        x = obj1.i2x(i); // mengambil nilai index ke dalam koordinat x
+        y = obj1.i2y(i);
+        if (x < wnow / 2) {
+          posnow = obj1.xy2i(wnow - x - 1, y); // mengubah index array xy ke dalam koordinat
+          tes[i][0] = tesbackup[posnow][0];
+          tes[i][1] = tesbackup[posnow][1];
+          tes[i][2] = tesbackup[posnow][2];
+          tes[i][3] = tesbackup[posnow][3];
+        }
+      }
+      obj1.array2canvas(tes);
+    });
+  </script>
+  <!-- Mirror Script -->
+
+  <!-- Mirror 2 -->
+  <script>
+    document.getElementById('mirror2').addEventListener('click', function () {
+      // copy array without reference
+      tesbackup = new Array();
+      for (var c = 0; c < tes.length; c++) {
+        temp = new Array();
+        for (var d = 0; d < 4; d++) {
+          temp.push(tes[c][d]);
+        }
+        tesbackup.push(temp);
+      }
+      // end of copy
+      var wnow = obj1.height;
+      for (var i = 0; i < tesbackup.length; i++) {
+        x = obj1.i2x(i); // mengambil nilai index ke dalam koordinat x
+        y = obj1.i2y(i);
+        if (y < wnow / 2) {
+          posnow = obj1.xy2i(x, wnow - y - 1); // mengubah index array xy ke dalam koordinat
+          tes[i][0] = tesbackup[posnow][0];
+          tes[i][1] = tesbackup[posnow][1];
+          tes[i][2] = tesbackup[posnow][2];
+          tes[i][3] = tesbackup[posnow][3];
+        }
+      }
+      obj1.array2canvas(tes);
+    });
+  </script>
+
+  <!-- Mirror 2 -->
+
+  <!-- Gabungan Script -->
+  <script>
+    document.getElementById('gabung').addEventListener('click', function () {
+      // copy array without reference
+      tesbackup = new Array();
+      for (var c = 0; c < tes.length; c++) {
+        temp = new Array();
+        for (var d = 0; d < 4; d++) {
+          temp.push(tes[c][d]);
+        }
+        tesbackup.push(temp);
+      }
+      // end of copy
+      for (var i = 0; i < tesbackup.length; i++) {
+        x = obj1.i2x(i); // mengambil nilai index ke dalam koordinat x
+        y = obj1.i2y(i);
+        posnow = obj1.xy2i(obj1.width - 1 - x, obj1.height - 1 - y); // mengubah index array xy ke dalam koordinat
+        tes[i][0] = tesbackup[posnow][0];
+        tes[i][1] = tesbackup[posnow][1];
+        tes[i][2] = tesbackup[posnow][2];
+        tes[i][3] = tesbackup[posnow][3];
+      }
+      obj1.array2canvas(tes);
+    });
+  </script>
+  <!-- Gabungan Script -->
 </html>
