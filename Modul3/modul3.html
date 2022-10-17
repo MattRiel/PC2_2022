@@ -148,8 +148,8 @@
         <!-- Gambar -->
         <div class="mt-3">
           <div class="col">
-            <canvas id="canvas1"></canvas>
-            <canvas id="canvas2"></canvas>
+            <canvas id="canvas1" width="180px"></canvas>
+            <canvas id="canvas2" width="360dp"></canvas>
           </div>
         </div>
         <!-- Gambar -->
@@ -176,28 +176,16 @@
       <!-- Info -->
 
       <footer class="mt-auto text-white-50">
-        <div class="popup" onclick="myFunction()">
-          TOMBOL SUS
-          <span class="popuptext" id="myPopup">SELAMAT ULANG TAHUN BANG</span>
-        </div>
         <p>Praktikum Pengolahan Citra - 2022</p>
       </footer>
     </div>
   </body>
 
   <!-- JavaScript -->
-  <script>
-    // When the user clicks on <div>, open the popup
-    function myFunction() {
-      var popup = document.getElementById('myPopup');
-      popup.classList.toggle('show');
-    }
-  </script>
-
   <script src="pc.js"></script>
   <script>
     var canvas1 = document.getElementById('canvas1');
-    var img = 'sample.png';
+    var img = 'pic1.png';
     var obj1 = new pc(canvas1);
     obj1.image2canvas(img);
 
@@ -239,12 +227,14 @@
       obj1.array2canvas(tesbackup);
     }
 
+    // RGB Slider
     for (var i = 1; i <= 4; i++) {
       document.getElementById('ch' + i).addEventListener('input', function () {
         rgbachange();
       });
     }
 
+    // Reset RGB
     document.getElementById('default').addEventListener('click', function () {
       for (var i = 1; i <= 3; i++) {
         document.getElementById('ch' + i).value = 0;
@@ -253,14 +243,18 @@
       rgbachange();
     });
 
+    // Histogram
     document.getElementById('hist1').addEventListener('click', function () {
       var hist = obj1.hist2read([
         parseInt(document.getElementById('histval').value),
       ]);
       obj2.hist2canvas(hist[0], 10);
     });
+  </script>
 
-    // Threshold Changer
+  <!-- Threshold Script -->
+  <script>
+    // Threshold
     document.getElementById('threshold').addEventListener('click', function () {
       document.getElementById('threshold_val').value = this.value;
       batas = parseInt(this.value);
@@ -296,7 +290,11 @@
       document.getElementById('threshold_val').value = 0;
       rgbachange();
     });
+  </script>
+  <!-- Threshold Script -->
 
+  <!-- Brightness Script -->
+  <script>
     // Brightness
     document
       .getElementById('brightness')
@@ -330,6 +328,7 @@
       rgbachange();
     });
   </script>
+  <!-- Brightness Script -->
 
   <!-- Negative Script -->
   <script>
@@ -407,7 +406,7 @@
   </script>
   <!-- Vertical Flip Script -->
 
-  <!-- Mirror Script -->
+  <!-- Mirror Y Script -->
   <script>
     document.getElementById('mirror').addEventListener('click', function () {
       // copy array without reference
@@ -435,9 +434,9 @@
       obj1.array2canvas(tes);
     });
   </script>
-  <!-- Mirror Script -->
+  <!-- Mirror Y Script -->
 
-  <!-- Mirror 2 -->
+  <!-- Mirror X Script -->
   <script>
     document.getElementById('mirror2').addEventListener('click', function () {
       // copy array without reference
@@ -465,7 +464,7 @@
       obj1.array2canvas(tes);
     });
   </script>
-  <!-- Mirror 2 -->
+  <!-- Mirror X Script -->
 
   <!-- Gabungan Script -->
   <script>
