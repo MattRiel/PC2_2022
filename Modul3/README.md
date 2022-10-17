@@ -3,7 +3,7 @@
 Pemrograman Image 1
 
 > Flip Horizontal
-> ![Horizontal](/Screenshot/hori.png)
+> ![Gambar](/Screenshot/hori.png)
 
 > Flip Vertical
 > ![Vertical](/Screenshot/verti.png)
