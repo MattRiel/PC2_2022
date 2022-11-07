@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PC2 - Modul3</title>
+    <title>UTS</title>
 
     <!-- BootStrap Link -->
     <link
@@ -168,6 +168,10 @@
       <!-- Info -->
       <main class="px-3">
         <h2>Pemrograman Image 2</h2>
+        <button id="half_gray">SETENGAH Grayscale</button>
+        <button id="upside">UpSideDown</button>
+        <button id="rgb_side">RGB Side</button>
+        <button id="rgb_side_hori">RGB Side Hori</button>
         <hr />
         Nama : Ariel Matius Surbakti <br />
         NIM : 201401038<br />
@@ -185,7 +189,7 @@
   <script src="pc.js"></script>
   <script>
     var canvas1 = document.getElementById('canvas1');
-    var img = 'avin2.png';
+    var img = 'pic1.png';
     var obj1 = new pc(canvas1);
     obj1.image2canvas(img);
 
@@ -492,4 +496,168 @@
     });
   </script>
   <!-- Gabungan Script -->
+
+  <!-- Grayscale -->
+  <script>
+    document.getElementById('grayscl').addEventListener('click', function () {
+      tesbackup = new Array();
+      for (var c = 0; c < tes.length; c++) {
+        temp = new Array();
+        for (var d = 0; d < 4; d++) {
+          temp.push(tes[c][d]);
+        }
+        tesbackup.push(temp);
+      }
+
+      for (var i = 0; i < tesbackup.length; i++) {
+        var total = Math.floor(
+          (tesbackup[i][0] + tesbackup[i][1] + tesbackup[i][2]) / 3
+        );
+        tes[i][0] = total;
+        tes[i][1] = total;
+        tes[i][2] = total;
+        tes[i][3] = tesbackup[i][3];
+      }
+
+      obj1.array2canvas(tes);
+    });
+  </script>
+
+  <!-- Half Grayscale Soal Nomor 1 -->
+  <script>
+    document.getElementById('half_gray').addEventListener('click', function () {
+      tesbackup = new Array();
+      for (var c = 0; c < tes.length; c++) {
+        temp = new Array();
+        for (var d = 0; d < 4; d++) {
+          temp.push(tes[c][d]);
+        }
+        tesbackup.push(temp);
+      }
+
+      var wnow = obj1.width;
+      for (var i = 0; i < tesbackup.length; i++) {
+        x = obj1.i2x(i); // mengambil nilai index ke dalam koordinat x
+        y = obj1.i2y(i);
+        if (x < wnow / 2) {
+          var total = Math.floor(
+            (tesbackup[i][0] + tesbackup[i][1] + tesbackup[i][2]) / 3
+          );
+          tes[i][0] = total;
+          tes[i][1] = total;
+          tes[i][2] = total;
+          tes[i][3] = tesbackup[i][3];
+        }
+      }
+
+      obj1.array2canvas(tes);
+    });
+  </script>
+
+  <!--  Up Side Down - Soal Nomor 2 -->
+  <script>
+    document.getElementById('upside').addEventListener('click', function () {
+      // copy array without reference
+      tesbackup = new Array();
+      for (var c = 0; c < tes.length; c++) {
+        temp = new Array();
+        for (var d = 0; d < 4; d++) {
+          temp.push(tes[c][d]);
+        }
+        tesbackup.push(temp);
+      }
+      // end of copy
+
+      var wnow = obj1.width;
+      for (var i = 0; i < tesbackup.length; i++) {
+        x = obj1.i2x(i); // mengambil nilai index ke dalam koordinat x
+        y = obj1.i2y(i);
+        if (x < wnow / 2) {
+          posnow = obj1.xy2i(x, obj1.height - 1 - y); // mengubah index array xy ke dalam koordinat
+          tes[i][0] = tesbackup[posnow][0];
+          tes[i][1] = tesbackup[posnow][1];
+          tes[i][2] = tesbackup[posnow][2];
+          tes[i][3] = tesbackup[posnow][3];
+        }
+        if (x > wnow / 2) {
+          posnow = obj1.xy2i(obj1.width - 1 - x, y); // mengubah index array xy ke dalam koordinat
+          tes[i][0] = tesbackup[posnow][0];
+          tes[i][1] = tesbackup[posnow][1];
+          tes[i][2] = tesbackup[posnow][2];
+          tes[i][3] = tesbackup[posnow][3];
+        }
+      }
+      obj1.array2canvas(tes);
+    });
+  </script>
+
+  <!-- 3 color - Soal nomor 3 -->
+  <script>
+    document.getElementById('rgb_side').addEventListener('click', function () {
+      tesbackup = new Array();
+      for (var c = 0; c < tes.length; c++) {
+        temp = new Array();
+        for (var d = 0; d < 4; d++) {
+          temp.push(tes[c][d]);
+        }
+        tesbackup.push(temp);
+      }
+      x = obj1.i2x(i); // mengambil nilai index ke dalam koordinat x
+      y = obj1.i2y(i);
+
+      var wnow = obj1.width;
+      for (var i = 0; i < tesbackup.length; i++) {
+        x = obj1.i2x(i); // mengambil nilai index ke dalam koordinat x
+        y = obj1.i2y(i);
+        if (x < wnow / 3) {
+          tes[i][0] = tesbackup[i][0] + 255;
+        }
+
+        if (x > wnow / 3 && x < (wnow * 2) / 3) {
+          tes[i][1] = tesbackup[i][1] + 255;
+        }
+
+        if (x > (wnow * 2) / 3) {
+          tes[i][2] = tesbackup[i][2] + 255;
+        }
+      }
+      obj1.array2canvas(tes);
+    });
+  </script>
+
+  <!-- 3 color - Horizontal-->
+  <script>
+    document
+      .getElementById('rgb_side_hori')
+      .addEventListener('click', function () {
+        tesbackup = new Array();
+        for (var c = 0; c < tes.length; c++) {
+          temp = new Array();
+          for (var d = 0; d < 4; d++) {
+            temp.push(tes[c][d]);
+          }
+          tesbackup.push(temp);
+        }
+        x = obj1.i2x(i); // mengambil nilai index ke dalam koordinat x
+        y = obj1.i2y(i);
+
+        var wnow = obj1.height;
+        for (var i = 0; i < tesbackup.length; i++) {
+          x = obj1.i2x(i); // mengambil nilai index ke dalam koordinat x
+          y = obj1.i2y(i);
+          if (y < wnow / 3) {
+            tes[i][0] = tesbackup[i][0] + 255;
+          }
+
+          if (y > wnow / 3 && y < (wnow * 2) / 3) {
+            tes[i][1] = tesbackup[i][1] + 255;
+          }
+
+          if (y > (wnow * 2) / 3) {
+            tes[i][2] = tesbackup[i][2] + 255;
+          }
+        }
+        obj1.array2canvas(tes);
+      });
+  </script>
 </html>
