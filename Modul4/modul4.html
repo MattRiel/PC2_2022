@@ -146,6 +146,7 @@
                 id="fil_size"
                 placeholder=" X >= 3 and odd number"
               />
+
               <button id="mean">Mean Filtering</button>
               <button id="median">Median Filtering</button>
               <hr />
@@ -194,7 +195,7 @@
   <script src="pc.js"></script>
   <script>
     var canvas1 = document.getElementById('canvas1');
-    var img = 'pic1.png';
+    var img = 'siber.png';
     var obj1 = new pc(canvas1);
     obj1.image2canvas(img);
 
@@ -555,7 +556,7 @@
     document.getElementById('median').addEventListener('click', function () {
       filtersize = parseInt(document.getElementById('fil_size').value);
       if (filtersize % 2 == 0 || filtersize < 3) {
-        warning('FilterSize must Odd Number and >=3');
+        warning('FilterSize must Odd Number or >=3');
         return false;
       }
       borderparam = (filtersize - 1) / 2;
