@@ -111,8 +111,8 @@
           <h4>Modul 3. Pemrograman Image 2</h4>
           <button id="flip1">Horizontal</button>
           <button id="flip2">Vertical</button>
-          <button id="mirror">Mirror</button>
-          <button id="mirror2">Mirror 2</button>
+          <button id="mirror">Mirror - Y</button>
+          <button id="mirror2">Mirror - X</button>
           <button id="gabung">Gabungan</button>
           <hr />
           <h4>Modul 4. Mean & Median Filtering</h4>
@@ -324,6 +324,33 @@
     });
   </script>
   <!-- Negative Script -->
+
+  <!-- Grayscale Script -->
+  <script>
+    document.getElementById('grayscl').addEventListener('click', function () {
+      tesbackup = new Array();
+      for (var c = 0; c < tes.length; c++) {
+        temp = new Array();
+        for (var d = 0; d < 4; d++) {
+          temp.push(tes[c][d]);
+        }
+        tesbackup.push(temp);
+      }
+
+      for (var i = 0; i < tesbackup.length; i++) {
+        var total = Math.floor(
+          (tesbackup[i][0] + tesbackup[i][1] + tesbackup[i][2]) / 3
+        );
+        tes[i][0] = total;
+        tes[i][1] = total;
+        tes[i][2] = total;
+        tes[i][3] = tesbackup[i][3];
+      }
+
+      obj1.array2canvas(tes);
+    });
+  </script>
+  <!-- Grayscale Script -->
 
   <!-- Horizontal Flip Script -->
   <script>
