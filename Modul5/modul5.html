@@ -133,7 +133,7 @@
 
       <div class="split right">
         <!-- Image -->
-        <div class="row align-items-center">
+        <div class="row align-items-center mt-2">
           <div class="col">
             <h2>Preview Image</h2>
             <canvas
@@ -288,7 +288,9 @@
         );
         if (gabung < batas) {
           gabung = 0;
-        } else gabung = 255;
+        } else {
+          gabung = 255;
+        }
         tes[i][0] = gabung;
         tes[i][1] = gabung;
         tes[i][2] = gabung;
