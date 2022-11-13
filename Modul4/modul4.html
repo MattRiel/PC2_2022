@@ -24,18 +24,9 @@
 
   <body class="d-flex h-100 text-center text-bg-dark">
     <header>
-      <nav class="navbar bg-light fixed-top">
+      <nav class="navbar fixed-top" style="background-color: yellow">
         <div class="container-fluid">
-          <a class="navbar-brand">
-            <img
-              src="cp-logo.png"
-              alt=""
-              width="50"
-              height="24"
-              class="d-inline-block align-text-top"
-            />
-            PRAKTIKUM PENGOLAHAN CITRA
-          </a>
+          <a class="navbar-brand"> PRAKTIKUM PENGOLAHAN CITRA </a>
           <a class="navbar-brand centered">201401038</a>
           <a class="navbar-brand">Ariel Matius Surbakti</a>
         </div>
@@ -45,29 +36,16 @@
     <main>
       <div class="split left">
         <div class="centered">
-          <h3>Utility</h3>
-          <hr />
-          <button id="read">Read Image</button>
-          <button id="ori">Original Image</button>
-          <button id="negatif" type="button">Negatif Image</button>
-          <button id="grayscl" type="button">Grayscale</button>
-          <hr />
-          <h3>SW</h3>
-          <hr />
-          <button id="flip1">Horizontal</button>
-          <button id="flip2">Vertical</button>
-          <button id="mirror">Mirror</button>
-          <button id="mirror2">Mirror 2</button>
-          <button id="gabung">Gabungan</button>
-          <hr />
+          <h4>Modul 1. Representasi Image</h4>
+          <button id="read">Read</button>
+          <button id="ori">Original</button>
 
           <select id="histval">
             <option value="0">Red</option>
             <option value="1">Green</option>
             <option value="2">Blue</option>
           </select>
-
-          <hr />
+          <br />
           R
           <input type="range" min="-255" max="255" data-id="1" id="ch1" /><input
             type="text"
@@ -103,20 +81,12 @@
           /><input type="text" id="chv4" size="3" disabled value="255" /><br />
 
           <button id="hist1">Histogram</button>
-
           <button id="default">Default RGBA</button>
-          <br />
-
-          <input
-            type="text"
-            id="fil_size"
-            placeholder=" X >= 3 and odd number"
-          />
-
-          <button id="mean">Mean Filtering</button>
-          <button id="median">Median Filtering</button>
           <hr />
-
+          <h4>Modul 2. Pemrograman Image 1</h4>
+          <button id="negatif" type="button">Negative</button>
+          <button id="grayscl" type="button">Grayscale</button>
+          <br />
           <!-- Threshold -->
           Threshold
           <input type="range" min="0" max="255" id="threshold" value="0" />
@@ -124,7 +94,6 @@
           <button id="thdefault" class="btn btn-danger btn-sm">Reset</button>
           <br />
           <!-- Threshold -->
-
           <!-- Brightness -->
           Brightness
           <input
@@ -138,16 +107,51 @@
           <input type="text" id="brightness_val" size="3" disabled value="0" />
           <button id="brdefault" class="btn btn-danger btn-sm">Reset</button>
           <!-- Brightness -->
+          <hr />
+          <h4>Modul 3. Pemrograman Image 2</h4>
+          <button id="flip1">Horizontal</button>
+          <button id="flip2">Vertical</button>
+          <button id="mirror">Mirror</button>
+          <button id="mirror2">Mirror 2</button>
+          <button id="gabung">Gabungan</button>
+          <hr />
+          <h4>Modul 4. Mean & Median Filtering</h4>
+          <button id="mean">Mean</button>
+          <button id="median">Median</button>
+          <input
+            type="text"
+            id="fil_size"
+            placeholder=" X >= 3 or odd number"
+          />
         </div>
       </div>
 
       <div class="split right">
         <div class="centered">
-          <canvas id="canvas1" width="180px"></canvas>
-          <canvas id="canvas2" width="360dp"></canvas>
+          <h2>Preview Image</h2>
+          <canvas
+            id="canvas1"
+            width="180px"
+            style="
+              border-style: double;
+              border-color: cyan;
+              border-radius: 20px;
+            "
+          ></canvas>
+          <h2>Histogram</h2>
+          <canvas
+            id="canvas2"
+            width="360dp"
+            style="border-style: double; border-color: cyan"
+          ></canvas>
         </div>
       </div>
     </main>
+
+    <!-- <footer class="centered">
+      © 2021 Copyright:
+      <a class="fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </footer> -->
   </body>
 
   <!-- JavaScript -->
