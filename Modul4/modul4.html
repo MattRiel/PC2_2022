@@ -152,6 +152,10 @@
               height: auto;
             "
           ></canvas>
+          <hr />
+          <h6 style="font-family: consolas; color: greenyellow" id="log_out">
+            CONSOLE LOG
+          </h6>
         </div>
       </div>
     </main>
@@ -172,10 +176,12 @@
     var tes = new Array();
     document.getElementById('read').addEventListener('click', function () {
       tes = obj1.image2read();
+      document.getElementById('log_out').innerHTML = 'Citra berhasil dibaca';
     });
 
     document.getElementById('ori').addEventListener('click', function () {
       obj1.image2original();
+      document.getElementById('log_out').innerHTML = 'Citra dipulihkan';
     });
 
     function rgbachange() {
@@ -217,6 +223,8 @@
       }
       document.getElementById('ch4').value = 255;
       rgbachange();
+      document.getElementById('log_out').innerHTML =
+        'Nilai RGB berhasil dipulihkan';
     });
 
     // Histogram
@@ -225,6 +233,8 @@
         parseInt(document.getElementById('histval').value),
       ]);
       obj2.hist2canvas(hist[0], 10);
+      document.getElementById('log_out').innerHTML =
+        'Histogram berhasil ditampilkan';
     });
   </script>
 
