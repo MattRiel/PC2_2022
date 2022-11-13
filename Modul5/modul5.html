@@ -132,19 +132,39 @@
       </div>
 
       <div class="split right">
-        <div class="centered">
-          <h2>Preview Image</h2>
-          <canvas
-            id="canvas1"
-            width="180px"
-            style="
-              border-style: double;
-              border-color: cyan;
-              border-radius: 20px;
-              max-width: 100%;
-              height: auto;
-            "
-          ></canvas>
+        <!-- Image -->
+        <div class="row align-items-center">
+          <div class="col">
+            <h2>Preview Image</h2>
+            <canvas
+              id="canvas3"
+              width="180px"
+              style="
+                border-style: double;
+                border-color: cyan;
+                border-radius: 20px;
+                max-width: 75%;
+                height: auto;
+              "
+            ></canvas>
+          </div>
+          <div class="col">
+            <h2>Result Image</h2>
+            <canvas
+              id="canvas1"
+              width="180px"
+              style="
+                border-style: double;
+                border-color: cyan;
+                border-radius: 20px;
+                max-width: 75%;
+                height: auto;
+              "
+            ></canvas>
+          </div>
+        </div>
+        <!-- Histogram -->
+        <div>
           <h2>Histogram</h2>
           <canvas
             id="canvas2"
@@ -169,8 +189,11 @@
   <script src="pc.js"></script>
   <script>
     var canvas1 = document.getElementById('canvas1');
+    var canvas3 = document.getElementById('canvas3');
     var img = 'siber.png';
     var obj1 = new pc(canvas1);
+    var prev = new pc(canvas3);
+    prev.image2canvas(img);
     obj1.image2canvas(img);
 
     var canvas2 = document.getElementById('canvas2');
