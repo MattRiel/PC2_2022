@@ -663,4 +663,53 @@
     });
   </script>
   <!-- Sobel Edge Detection -->
+
+  <!-- Prewitt Edge Detection -->
+  <script>
+    document.getElementById('prewitt').addEventListener('click', function () {
+      var Gxtemp = new Array(4);
+      var Gytemp = new Array(4);
+      var G = new Array();
+      var xpos = 0;
+      var ypos = 0;
+      function cek(x, y, n) {
+        if (y >= 0 && x >= 0 && x < obj1.width && y < obj1.height)
+          return parseInt(tes[obj1.xy2i(x, y)]);
+        else return 0;
+      }
+      for (var i = 0; i < tes.length; i++) {
+        var Gtemp = new Array(4);
+        xpos = obj1.i2x(i);
+        ypos = obj1.i2y(i);
+        for (var j = 0; j < 3; j++) {
+          Gxtemp[j] =
+            cek(xpos - 1, ypos - 1) * -1 +
+            cek(xpos - 1, ypos) * -1 +
+            cek(xpos - 1, ypos + 1) * -1 +
+            cek(xpos + 1, ypos - 1) +
+            cek(xpos + 1, ypos) +
+            cek(xpos + 1, ypos + 1);
+
+          Gytemp[j] =
+            cek(xpos - 1, ypos - 1) * -1 +
+            cek(xpos, ypos - 1) * -1 +
+            cek(xpos + 1, ypos - 1) * -1 +
+            cek(xpos - 1, ypos + 1) +
+            cek(xpos, ypos + 1) +
+            cek(xpos + 1, ypos + 1);
+
+          Gtemp[j] = Math.floor(
+            Math.sqrt(
+              parseInt(Gxtemp[j]) * parseInt(Gxtemp[j]) +
+                parseInt(Gytemp[j]) * parseInt(Gytemp[j])
+            )
+          );
+        }
+        Gtemp[3] = tes[i][3];
+        G.push(Gtemp);
+      }
+      obj1.array2canvas(G);
+    });
+  </script>
+  <!-- Prewitt Edge Detection -->
 </html>
