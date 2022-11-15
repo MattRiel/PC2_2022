@@ -1,5 +1,3 @@
-# Modul 4
+# Modul 6
 
-Pemrograman Image 1
-
-###### Buatlah web seperti di modul yang memiliki dan ubahlah tampilannya
+Edge Detection 6
