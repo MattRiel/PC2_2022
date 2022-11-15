@@ -1,0 +1,5 @@
+Flipping / Pencerminan
+Horizontal Flipping = flip sumbu x
+Vertical Flipping = flip sumbu y
+
+Pencerminan gambar secara Horizontal terhadap garis vertikal di tengah gambar adalah X' = -X
