@@ -1,3 +1,3 @@
-# Modul 6
+# Modul 7
 
-Edge Detection 6
+Transformasi 2D I
