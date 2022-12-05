@@ -206,7 +206,7 @@
               id="scale"
               value="1"
               step="0.1"
-              min="1"
+              min="-10"
               max="10"
             />
             <button id="default_scale">Reset</button>
@@ -1008,6 +1008,9 @@
   <script>
     document.getElementById('scale').addEventListener('input', function () {
       var scaleval = 1 / this.value;
+      // 1 / this.value akan mengubah gambar menjadi skala kecil
+      // this.value akan mengubah gambar menjadi skala besar
+      // dapat dihubungkan juga dengan min dan max dari html script ini
       var xpos = 0;
       var ypos = 0;
       var xnow = 0;
